@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-price">单价 {{price}} 元</text>
+  </view>
+
+  <view class="usermotto">
+  	<view class="price">
+  		<input type="digit" bindinput="price" placeholder="输入金额" />
+  	</view>
+
+    <button 
+    	bindtap="paynow"
+    	type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" > 立即购买 </button>
+  </view>
+</view>
