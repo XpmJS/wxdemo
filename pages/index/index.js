@@ -6,54 +6,31 @@ var app = getApp()
 Page({
 
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    wss:{status:'grey', text:'信道未连接', style:''},
-    price:0.50,
+    userInfo: {avatarUrl:'/res/icons/avt.gif', nickName:'...'},
+    wss:{status:'grey', text:'信道未连接', style:'grey'},
+    pages: [
+      {name:' 用户 ( User)', link:'/pages/payment/payment' },
+      {name:' 数据表格 ( Table )', link:'/pages/payment/payment' },
+      {name:' WebSocket 信道  ( Wss )', link:'/pages/payment/payment' },
+      {name:' 微信支付 ( Pay )', link:'/pages/payment/payment' }
+    ]
   },
 
+  bindViewTap: function( e){
 
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
 
-  paynow: function(e) {
+  linkto: function( e ) {
 
-    var pay = app.tdm.require('pay');
-    var price = this.data.price;
-    
-    pay.request( {price:price} )
+    var data = e.currentTarget.dataset;
+    var link = data.link || '/pages/index/index';
+    wx.navigateTo({ url: link });
 
-    .then(function( data ){
-        console.log( data );
-    })
-    .catch( function( excp){
-        console.log( 'Request Error', excp );
-    });
-
-    console.log('Pay Now', price);
   },
-
-  price: function(e) {
-
-    var price = parseFloat(e.detail.value);
-    var pos = price.toString().length;
-    if ( isNaN(price) ) {
-      price=0;
-      pos = 0;
-    }
-    this.setData( {price:price.toFixed(2)} );
-    return { value:price, cursor:pos }
-  },
-
 
   onReady: function () {
 
     var that = this;
-    var user = app.tdm.require('User');
     var wssRetryTimes = 0;
 
     // 信道状态监听
@@ -79,14 +56,13 @@ Page({
     }
 
 
-    wx.showToast({title:'验证用户身份', icon:'loading', mask:true, duration: 10000});
+    // 用户登录
+    var user = app.tdm.require('User');
+    // wx.showToast({title:'验证用户身份', icon:'loading', mask:true, duration: 10000});
     user.login()
 
       .then( function( userInfo ){
-          wx.hideToast();
-          wx.setNavigationBarTitle({
-            title: '购买 【' +  userInfo.nickName  + '】'
-          })
+          app.session.set('loginUser', userInfo );
           that.setData({
             userInfo:userInfo
           });
@@ -94,7 +70,7 @@ Page({
 
       .catch( function( e ) { 
          console.log('ERROR HELLO', e );
-         wx.hideToast();
+         // wx.hideToast();
          wx.showModal({
             title: '验证失败',
             content: '用户身份验证失败, 请重试',

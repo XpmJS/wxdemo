@@ -17,6 +17,8 @@ App({
 
     // 打开默认信道
     this.wss = this.tdm.require('wss');
+    this.session = this.tdm.require('session');
+    
     this.wss.open('/wxapp').then( function(){
     
         console.log('/wxapp 信道连接成功');
