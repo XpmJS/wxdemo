@@ -18,7 +18,14 @@ App({
     // 打开默认信道
     this.wss = this.tdm.require('wss');
     this.session = this.tdm.require('session');
-    
+    this.wss.listen('payment', function( res, status ){
+      if ( status != 'success') return ;
+      var u = res.request.b;
+      var link = '/pages/payment/payment?nickName=' + u.nickName;
+      wx.navigateTo({ url: link });
+    });
+
+
     this.wss.open('/wxapp').then( function(){
     
         console.log('/wxapp 信道连接成功');

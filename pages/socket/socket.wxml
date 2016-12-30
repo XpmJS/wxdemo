@@ -1,14 +1,20 @@
 <!--index.wxml-->
-<view class="container clear">
-  <view  class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
+<view  class="userinfo">
+  <image class="statusbar-image "  src="/res/icons/circle-{{wss.status}}.png" ></image>  
+  <text  class="statusbar-text {{wss.style}}">{{wss.text}}</text>
+  <image class="userinfo-avatar flex-item " src="{{userInfo.avatarUrl}}" ></image>
+  <text class="userinfo-nickname flex-item ">{{userInfo.nickName}}</text>
+  <text bindtap="reload" class="userinfo-reload flex-item ">刷新</text>
+ 
+</view>
 
-  <view class="usermotto">
-    <button 
-    	bindtap="wsstest"
-    	type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" > 连接测试 </button>
-  </view>
+<view class="users" wx:for="{{users}}" wx:key="id"  >
+  <image class="useritem-avatar" src="{{item.avatarUrl}}" ></image>
+  <text  class="useritem-nickname">{{item.nickName}}</text>
+  <button 
+      bindtap="send"
+      data-cid="{{item.id}}"
+      class="useritem-btn"
+      type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+      disabled="{{disabled}}" > 发送付款请求 </button>
 </view>

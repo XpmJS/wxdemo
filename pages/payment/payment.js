@@ -50,42 +50,21 @@ Page({
     
   },
 
-  onLoad: function() {
+  onLoad: function( option ) {
     var that = this;
-    var userInfo = app.session.get('loginUser');
-    if ( typeof userInfo == undefined ) {
+    var user = app.tdm.require('User');
+    wx.setNavigationBarTitle({
+        title: '购买 【' +  option.nickName  + '】'
+    });
 
-      var user = app.tdm.require('User');
-      user.login()
-      .then( function( userInfo  ){
+    user.login().then(function( res ){
+      console.log( res);
+      return user.tab.getLine("WHERE nickName=?", [option.nickName] );
 
-            wx.setNavigationBarTitle({
-              title: '购买 【' +  userInfo.nickName  + '】'
-            })
-            that.setData({
-              userInfo:userInfo
-            });
-        })
-
-        .catch( function( e ) { 
-           console.log('ERROR HELLO', e );
-           wx.showModal({
-              title: '验证失败',
-              content: '用户身份验证失败, 请重试',
-              success: function(res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
-                }
-              }
-            })
-        });
-    } else {
-
-      wx.setNavigationBarTitle({
-          title: '购买 【' +  userInfo.nickName  + '】'
-      });
-      this.setData({userInfo:userInfo});
-    }
+    }).then(function( userInfo ) {
+        that.setData({userInfo:userInfo});
+    });
+   
   },
 
   onReady: function () {

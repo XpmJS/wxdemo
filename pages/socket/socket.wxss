@@ -1,48 +1,97 @@
 /**index.wxss**/
-.userinfo {
+
+.container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 0;
+  box-sizing: border-box;
 }
 
-.status-bar {
-
+.container button { 
+  width:80%; 
+  margin-bottom: 40rpx;
 }
 
-.clear {
-   clear:both;
+.users{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #efefef;
+  padding: 20rpx;
+}
+
+.useritem-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  margin: 20rpx;
+  border-radius: 12rpx;
+}
+
+.useritem-nickname {
+  font-size: 32rpx;
+}
+
+.useritem-btn {
+  width: auto;
+  height: 72rpx;
+  font-size: 28rpx;
+}
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+}
+
+.userinfo-avatar {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 20rpx;
+  margin-left: 40rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #1aad16;
+  font-size: 26rpx;
+}
+
+.userinfo-reload {
+  font-size: 26rpx;
+  color: #1aad16;
+  margin-left: 100rpx;
 }
 
 
 
 .statusbar-image {
-  width: 26rpx;
-  height: 26rpx;
-  float: right;
-  margin-right: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+}
+
+.status-btn {
+  width: 100rpx;
+  height: 42rpx;
+  font-size:32rpx;
+  margin-left: 40rpx;
 }
 
 .statusbar-text {
   font-size: 26rpx;
   color: #aaa;
-  float: right;
-  margin-right: 40rpx;
+  
 }
 
 .statusbar-green {
   color: #1aad16;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
 
-.userinfo-nickname {
-  color: #aaa;
-}
 
 .userinfo-price {
 	color: #aaa;
