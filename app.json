@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/payment/payment",
+    "pages/socket/socket",
     "pages/logs/logs"
   ],
   

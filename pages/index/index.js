@@ -11,7 +11,7 @@ Page({
     pages: [
       {name:' 用户 ( User)', link:'/pages/payment/payment' },
       {name:' 数据表格 ( Table )', link:'/pages/payment/payment' },
-      {name:' WebSocket 信道  ( Wss )', link:'/pages/payment/payment' },
+      {name:' WebSocket 信道  ( Wss )', link:'/pages/socket/socket' },
       {name:' 微信支付 ( Pay )', link:'/pages/payment/payment' }
     ]
   },
@@ -41,9 +41,10 @@ Page({
       if ( wssRetryTimes > 3 ) {
         wait = wssRetryTimes * 2000;
       } 
-      setTimeout(function(){ app.wss.open('/wxapp'); }, wait );
+      setTimeout(function(){ app.wss.open('/wxapp').catch(function(excp){ console.log('Retry Error', excp);}); }, wait );
 
     });
+
 
     app.wss.bind('open', function(event) {
       wssRetryTimes = 0;

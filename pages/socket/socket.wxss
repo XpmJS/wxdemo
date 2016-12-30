@@ -1,25 +1,8 @@
 /**index.wxss**/
-
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40rpx 0;
-  box-sizing: border-box;
-}
-
-.container button { 
-  width:80%; 
-  margin-bottom: 40rpx;
-}
-
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 60rpx;
 }
 
 .status-bar {
@@ -33,8 +16,8 @@
 
 
 .statusbar-image {
-  width: 32rpx;
-  height: 32rpx;
+  width: 26rpx;
+  height: 26rpx;
   float: right;
   margin-right: 10rpx;
 }
