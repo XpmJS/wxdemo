@@ -54,14 +54,22 @@ Page({
 
     var that = this;
     var user = app.tdm.require('User');
+    var wssRetryTimes = 0;
 
     // 信道状态监听
     app.wss.bind('close', function(event) {
       that.setData({'wss.status':'grey', 'wss.text':'信道未连接', 'wss.style':''});
-      setTimeout(function(){ app.wss.open('/wxapp'); }, 2000);
+      wssRetryTimes++;
+      var wait = 2000;
+      if ( wssRetryTimes > 3 ) {
+        wait = wssRetryTimes * 2000;
+      } 
+      setTimeout(function(){ app.wss.open('/wxapp'); }, wait );
+
     });
 
     app.wss.bind('open', function(event) {
+      wssRetryTimes = 0;
       that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
     });
 
