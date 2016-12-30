@@ -5,6 +5,34 @@
   align-items: center;
 }
 
+.status-bar {
+
+}
+
+.clear {
+   clear:both;
+}
+
+
+
+.statusbar-image {
+  width: 26rpx;
+  height: 26rpx;
+  float: right;
+  margin-right: 10rpx;
+}
+
+.statusbar-text {
+  font-size: 26rpx;
+  color: #aaa;
+  float: right;
+  margin-right: 40rpx;
+}
+
+.statusbar-green {
+  color: #1aad16;
+}
+
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -18,12 +46,12 @@
 
 .userinfo-price {
 	color: #aaa;
-	margin-top: .5rem;
+	margin-top: 20rpx;
 }
 
 .price {
-	margin-bottom:10px;
+	margin-bottom:20rpx;
 }
 .usermotto {
-  margin-top: 6em;
+  margin-top: 200rpx;
 }

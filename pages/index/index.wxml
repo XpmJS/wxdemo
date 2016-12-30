@@ -1,5 +1,9 @@
 <!--index.wxml-->
-<view class="container">
+<view class="statusbar">
+    <text  class="statusbar-text {{wss.style}}">{{wss.text}}</text>
+    <image class="statusbar-image "  src="/res/icons/circle-{{wss.status}}.png" ></image>  
+</view>
+<view class="container clear">
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>

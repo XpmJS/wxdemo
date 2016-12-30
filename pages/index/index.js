@@ -8,6 +8,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    wss:{status:'grey', text:'信道未连接', style:''},
     price:0.50,
   },
 
@@ -51,9 +52,23 @@ Page({
 
   onReady: function () {
 
-
     var that = this;
     var user = app.tdm.require('User');
+
+    // 信道状态监听
+    app.wss.bind('close', function(event) {
+      that.setData({'wss.status':'grey', 'wss.text':'信道未连接', 'wss.style':''});
+      setTimeout(function(){ app.wss.open('/wxapp'); }, 2000);
+    });
+
+    app.wss.bind('open', function(event) {
+      that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
+    });
+
+    // 呈现当前信道状态
+    if ( app.wss.isOpen ) {
+      that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
+    }
 
 
     wx.showToast({title:'验证用户身份', icon:'loading', mask:true, duration: 10000});
