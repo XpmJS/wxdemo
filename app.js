@@ -18,6 +18,9 @@ App({
     // 打开默认信道
     this.wss = this.tdm.require('wss');
     this.session = this.tdm.require('session');
+    this.stor = this.tdm.require('stor');
+    this.stor.clearSync();
+
     this.wss.listen('payment', function( res, status ){
       if ( status != 'success') return ;
       var u = res.request.b;
