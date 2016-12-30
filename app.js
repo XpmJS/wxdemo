@@ -6,6 +6,7 @@ App({
 
     var that = this;
 
+    // 创建 xpm 对象
     this.tdm = require('tdm/tdm.js').option({
         'host':'wxcloud.tuanduimao.cn',
         'https':'wxcloud.tuanduimao.cn',
@@ -13,6 +14,19 @@ App({
         'table.prefix': 'o2o',
         'user.table':'wxuser'
     });
+
+    // 打开默认信道
+    this.wss = this.tdm.require('wss');
+    this.wss.open('/wxapp').then( function(){
+    
+        console.log('/wxapp 信道连接成功');
+    
+    }).catch(function( excp ){
+
+      console.log('/wxapp 信道连接失败', excp );
+    });
+
+
 
     // var user = this.tdm.require('User');
     // var tb = this.tdm.require('Table', 'hello' );
