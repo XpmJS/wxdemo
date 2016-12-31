@@ -14,7 +14,7 @@ Page({
   // 支付按钮
   paynow: function(e) {
 
-    var pay = app.tdm.require('pay');
+    var pay = app.xpm.require('pay');
     var price = this.data.price;
     price = parseFloat(price).toFixed(2) * 100;
 
@@ -61,14 +61,14 @@ Page({
 
   onLoad: function( option ) {
     var that = this;
-    var user = app.tdm.require('User');
-    var title = option.nickName;
+    var user = app.xpm.require('User');
+    var title = "时间拍卖:" + option.nickName;
 
     if ( option.nickName == '_p' ) {
         title = '服务器开光';
     } 
     wx.setNavigationBarTitle({
-        title: '时间拍卖:【' +  title  + '】'
+        title: title
     });
 
     user.get().then(function( res ){

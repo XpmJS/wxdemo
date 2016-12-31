@@ -111,7 +111,7 @@ Page({
 
     if (  userInfo == null ) {
 
-      var user = app.tdm.require('User');
+      var user = app.xpm.require('User');
       user.login()
       .then( function( userInfo  ){
 

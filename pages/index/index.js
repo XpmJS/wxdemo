@@ -67,7 +67,7 @@ Page({
 
 
     // 用户登录
-    var user = app.tdm.require('User');
+    var user = app.xpm.require('User');
     // wx.showToast({title:'验证用户身份', icon:'loading', mask:true, duration: 10000});
     user.login()
 

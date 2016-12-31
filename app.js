@@ -11,7 +11,7 @@ App({
     var that = this;
 
     // 创建 xpm 对象
-    this.tdm = require('tdm/tdm.js').option({
+    this.xpm = require('xpm/xpm.js').option({
         'host':'wxcloud.tuanduimao.cn',
         'https':'wxcloud.tuanduimao.cn',
         'wss': 'wxcloud.tuanduimao.cn/ws-server',
@@ -20,9 +20,9 @@ App({
     });
 
     // 打开默认信道
-    this.wss = this.tdm.require('wss');
-    this.session = this.tdm.require('session');
-    this.stor = this.tdm.require('stor');
+    this.wss = this.xpm.require('wss');
+    this.session = this.xpm.require('session');
+    this.stor = this.xpm.require('stor');
     this.stor.clearSync();
 
     this.wss.listen('payment', function( res, status ){
@@ -44,8 +44,8 @@ App({
 
 
 
-    // var user = this.tdm.require('User');
-    // var tb = this.tdm.require('Table', 'hello' );
+    // var user = this.xpm.require('User');
+    // var tb = this.xpm.require('Table', 'hello' );
 
     // user.login().then(function( resp ){
     //   return  user.tab.query()
@@ -198,10 +198,10 @@ App({
     }); */
    
   
-    // this.stor = this.tdm.require('Stor');
+    // this.stor = this.xpm.require('Stor');
     // // this.stor.clearSync();
 
-    // this.session = this.tdm.require('Session');
+    // this.session = this.xpm.require('Session');
     // this.session.start();
     // this.session.set('user', {hello:'world'});
 
@@ -210,7 +210,7 @@ App({
 
 
     // // Load Wss
-    // var wss = this.tdm.require('Wss');
+    // var wss = this.xpm.require('Wss');
     // wss.bind('hello', function( arg1, arg2 ) {
     //     console.log('Hello IS Called', arg1, arg2 );
     // });
@@ -252,7 +252,7 @@ App({
 
 
 
-    // var user = this.tdm.require('User');
+    // var user = this.xpm.require('User');
     // user.login().then(function( u ){
     //   console.log( 'user is', u );
     //   return wss.open('/wxapp')
@@ -288,7 +288,7 @@ App({
     wx.setStorageSync('logs', logs ); */
   },
 
-  tdm:null,
+  xpm:null,
   session:null,
   stor:null,
   wss:null,
