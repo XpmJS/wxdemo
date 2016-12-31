@@ -11,7 +11,7 @@ App({
     var that = this;
 
     // 创建 xpm 对象
-    this.xpm = require('xpm/xpm.js').option({
+    this.xpm = require('xpmjs/xpm.js').option({
         'host':'wxcloud.tuanduimao.cn',
         'https':'wxcloud.tuanduimao.cn',
         'wss': 'wxcloud.tuanduimao.cn/ws-server',
