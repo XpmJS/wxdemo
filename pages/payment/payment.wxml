@@ -8,12 +8,12 @@
 
   <view class="usermotto">
   	<view class="price">
-  		<input type="digit" bindinput="price" placeholder="输入金额" />
+  		<input type="digit" bindinput="price" placeholder="输入赏金" />
   	</view>
 
     <button 
     	bindtap="paynow"
     	type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" > 立即购买 </button>
+        disabled="{{disabled}}" > 立即支付 </button>
   </view>
 </view>

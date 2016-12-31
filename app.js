@@ -2,6 +2,10 @@
 
 App({
 
+  onHide: function(){
+    this.wss.close();
+  },
+  
   onLaunch: function () {
 
     var that = this;
@@ -29,14 +33,14 @@ App({
     });
 
 
-    this.wss.open('/wxapp').then( function(){
+    // this.wss.open('/wxapp').then( function(){
     
-        console.log('/wxapp 信道连接成功');
+    //     console.log('/wxapp 信道连接成功');
     
-    }).catch(function( excp ){
+    // }).catch(function( excp ){
 
-      console.log('/wxapp 信道连接失败', excp );
-    });
+    //   console.log('/wxapp 信道连接失败', excp );
+    // });
 
 
 

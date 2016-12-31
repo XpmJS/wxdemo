@@ -9,10 +9,10 @@ Page({
     userInfo: {avatarUrl:'/res/icons/avt.gif', nickName:'...'},
     wss:{status:'grey', text:'信道未连接', style:'grey'},
     pages: [
-      {name:' 用户 ( User)', link:'/pages/payment/payment' },
-      {name:' 数据表格 ( Table )', link:'/pages/payment/payment' },
+      {name:' 用户 ( User)', link:'/pages/404/404' },
+      {name:' 数据表格 ( Table )', link:'/pages/404/404' },
       {name:' WebSocket 信道  ( Wss )', link:'/pages/socket/socket' },
-      {name:' 微信支付 ( Pay )', link:'/pages/payment/payment' }
+      {name:' 微信支付 ( Pay )', link:'/pages/payment/payment?nickName=_p' }
     ]
   },
 
@@ -24,14 +24,15 @@ Page({
 
     var data = e.currentTarget.dataset;
     var link = data.link || '/pages/index/index';
-    wx.navigateTo({ url: link });
+    if ( link != '/pages/404/404') {
+      wx.navigateTo({ url: link });
+    }
 
   },
 
-  onReady: function () {
-
+  onShow: function() {
+    
     var that = this;
-    var wssRetryTimes = 0;
 
     // 信道状态监听
     app.wss.bind('close', function(event) {
@@ -55,6 +56,14 @@ Page({
     if ( app.wss.isOpen ) {
       that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
     }
+  },
+
+  onReady: function () {
+
+    var that = this;
+    var wssRetryTimes = 0;
+
+    
 
 
     // 用户登录

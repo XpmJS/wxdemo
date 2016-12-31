@@ -9,11 +9,16 @@ Page({
     wss:{status:'grey', text:'信道未连接', style:'grey'},
     userInfo: {},
     users:[],
+    opname:'刷新',
     price:0.50,
   },
 
 
   reload:function(e) {
+    var that = this;
+
+    // 呈现当前信道状态
+  
     var that =this;
 
     wx.showToast({
@@ -23,7 +28,12 @@ Page({
     });
 
     // 在线用户
-    app.wss.liveUsers().then(function( users ) {
+    app.wss.close();
+    app.wss.open('/wxapp').then(function( users ) {
+        return app.wss.liveUsers();
+
+    }).then(function( users ) {
+
         wx.showToast({
               title: '完成',
               icon: 'success',
@@ -32,11 +42,20 @@ Page({
 
         var i = 1;
         for( var id in users) {
+            i = i + 1;
            users[id]['nickName'] = users[id]['nickName'] || ' 访客' + i;
            users[id]['avatarUrl'] = users[id]['avatarUrl'] || '/res/icons/nopic.png';
         }
+
         that.setData({'users':users});
-      });
+    })
+    .catch(function( excp ) {
+        wx.showToast({
+              title: '完成',
+              icon: 'success',
+              duration: 200
+        })
+    })
   },
 
   // 发送请求
@@ -59,35 +78,36 @@ Page({
   },
 
 
-  onLoad: function( option ) {
-    console.log( option );
+  onShow: function( option ) {
 
     var that = this;
-    var userInfo = app.session.get('loginUser');
 
     // 信道状态监听
     app.wss.bind('close', function(event) {
-      that.setData({'wss.status':'grey', 'wss.text':'信道未连接', 'wss.style':''});
+      that.setData({'opname':'连接', 'wss.status':'grey', 'wss.text':'信道未连接', 'wss.style':''});
       wssRetryTimes++;
       var wait = 2000;
       if ( wssRetryTimes > 3 ) {
         wait = wssRetryTimes * 2000;
-      } 
-      setTimeout(function(){ app.wss.open('/wxapp').catch(function(excp){ console.log('Retry Error', excp);}); }, wait );
-
+      }
     });
 
-
     app.wss.bind('open', function(event) {
-      wssRetryTimes = 0;
-      that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
+      that.setData({'opname':'刷新', 'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
     });
 
     // 呈现当前信道状态
     if ( app.wss.isOpen ) {
-      that.setData({'wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
+      that.setData({'opname':'刷新','wss.status':'green', 'wss.text':'信道已连接', 'wss.style':'statusbar-green'});
     }
 
+  },
+
+
+  onLoad: function( option ) {
+
+    var that = this;
+    var userInfo = app.session.get('loginUser');
 
     if (  userInfo == null ) {
 

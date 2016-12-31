@@ -6,29 +6,38 @@ var app = getApp()
 Page({
 
   data: {
-    motto: 'Hello World',
+    title: '服务器开光',
     userInfo: {},
-    price:0.50,
+    price:0.05,
   },
-
-
 
   // 支付按钮
   paynow: function(e) {
 
     var pay = app.tdm.require('pay');
     var price = this.data.price;
-    
-    pay.request( {price:price} )
+    price = parseFloat(price).toFixed(2) * 100;
+
+    pay.request( {
+      total_fee:price, 
+      body:this.data.title,
+      attach:'HELLO XpmJS.com',
+      detail:'{"goods_id":"iphone6s_16G", "wxpay_goods_id":"1001", "goods_name":"iPhone6s 16G", "quantity":1, "price":528800, "goods_category":"123456", "body":"苹果手机" }, { "goods_id":"iphone6s_32G", "wxpay_goods_id":"1002", "goods_name":"iPhone6s 32G", "quantity":1, "price":608800, "goods_category":"123789", "body":"苹果手机" } ] }'
+    })
+
 
     .then(function( data ){
-        console.log( data );
+      wx.showToast({
+              title: '购买成功',
+              icon: 'success',
+              duration: 2000
+        })
     })
+
     .catch( function( excp){
         console.log( 'Request Error', excp );
     });
 
-    console.log('Pay Now', price);
   },
 
 
@@ -53,16 +62,25 @@ Page({
   onLoad: function( option ) {
     var that = this;
     var user = app.tdm.require('User');
+    var title = option.nickName;
+
+    if ( option.nickName == '_p' ) {
+        title = '服务器开光';
+    } 
     wx.setNavigationBarTitle({
-        title: '购买 【' +  option.nickName  + '】'
+        title: '时间拍卖:【' +  title  + '】'
     });
 
-    user.login().then(function( res ){
-      console.log( res);
+    user.get().then(function( res ){
+
+      if ( option.nickName == '_p' ) {
+         return {nickName:title, avatarUrl:'/res/icons/dashi.png' }
+      }
+
       return user.tab.getLine("WHERE nickName=?", [option.nickName] );
 
     }).then(function( userInfo ) {
-        that.setData({userInfo:userInfo});
+        that.setData({userInfo:userInfo, title:title});
     });
    
   },

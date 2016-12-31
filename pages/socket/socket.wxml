@@ -4,7 +4,7 @@
   <text  class="statusbar-text {{wss.style}}">{{wss.text}}</text>
   <image class="userinfo-avatar flex-item " src="{{userInfo.avatarUrl}}" ></image>
   <text class="userinfo-nickname flex-item ">{{userInfo.nickName}}</text>
-  <text bindtap="reload" class="userinfo-reload flex-item ">刷新</text>
+  <text bindtap="reload" class="userinfo-reload ">{{opname}}</text>
  
 </view>
 
