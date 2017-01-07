@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/payment/payment",
-    "pages/socket/socket"  
+    "pages/socket/socket",
+    "pages/app/app"
   ],
   
   "window":{

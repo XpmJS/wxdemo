@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<view class="container clear">
+  
+  <view  class="userinfo">
+    <text class="userinfo-price">{{app.appn}} {{app.appc}} {{app.appa}} {{app.param}}</text>
+    <text class="userinfo-price">{{result}}</text>
+  </view>
+
+  <view class="usermotto">
+
+  	<view class="price">
+  		<input type="digit" bindinput="appinput" data-name="appn" placeholder="输入 App Name" />
+  	</view>
+
+    <view class="price">
+      <input type="digit" bindinput="appinput" data-name="appc" placeholder="输入 App Controller" />
+    </view>
+
+    <view class="price">
+      <input type="digit" bindinput="appinput" data-name="appa" placeholder="输入 Action" />
+    </view>
+
+    <view class="price">
+      <input type="digit" bindinput="appinput" data-name="param" placeholder="输入请求参数" />
+    </view>
+
+    <button 
+    	bindtap="appget"
+    	type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" > 发起 GET 请求 </button>
+
+      <button 
+      bindtap="apppost"
+      style="margin-top:20rpx;"
+      type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" > 发起 POST 请求 </button>
+
+
+       <button 
+      bindtap="htmlfetch"
+      style="margin-top:20rpx;"
+      type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" > Fetch HTML </button>
+    
+     <button 
+      bindtap="jsonfetch"
+      style="margin-top:20rpx;"
+      type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" > Fetch JSON </button>
+
+
+
+
+  </view>
+</view>

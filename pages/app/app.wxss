@@ -1,0 +1,57 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status-bar {
+
+}
+
+.clear {
+   clear:both;
+}
+
+
+
+.statusbar-image {
+  width: 26rpx;
+  height: 26rpx;
+  float: right;
+  margin-right: 10rpx;
+}
+
+.statusbar-text {
+  font-size: 26rpx;
+  color: #aaa;
+  float: right;
+  margin-right: 40rpx;
+}
+
+.statusbar-green {
+  color: #1aad16;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.userinfo-price {
+	color: #aaa;
+	margin-top: 20rpx;
+}
+
+.price {
+	margin-bottom:20rpx;
+}
+.usermotto {
+  margin-top: 100rpx;
+}

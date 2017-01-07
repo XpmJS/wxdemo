@@ -12,7 +12,8 @@ Page({
       {name:' 用户 ( User)', link:'/pages/404/404' },
       {name:' 数据表格 ( Table )', link:'/pages/404/404' },
       {name:' WebSocket 信道  ( Wss )', link:'/pages/socket/socket' },
-      {name:' 微信支付 ( Pay )', link:'/pages/payment/payment?nickName=_p' }
+      {name:' 微信支付 ( Pay )', link:'/pages/payment/payment?nickName=_p' },
+      {name:' 应用接口 ( App )', link:'/pages/app/app' }
     ]
   },
 
